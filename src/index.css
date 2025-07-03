@@ -1,12 +1,35 @@
+/**
+ * @layer root: :root, #root
+ * @layer base: html, body, a, p, etc.
+ * @layer components: .btn, .card, etc.
+ * @layer utilities: .flex, .grid, etc.
+ * @layer media: media queries
+ * @theme: https://tailwindcss.com/docs/theme#customizing-your-theme 
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lexend+Giga:wght@100..900&family=Lexend:wght@100..900&display=swap');
 @import "tailwindcss";
-
-@theme {
-  --font-none: '', '';
-}
 
 @layer root {
   :root {
-    --background-color: #000000;
+    --color-background: #0D1317;
+    --color-darkest: #131A1F;
+    --color-darker: #1A2228;
+    --color-dark: #253039;
+    --color-light: #36454F;
+    --color-lighter: #69767D;
+    --color-lightest: #C9CFD2;
+    --color-foreground: #F5F5F5;
+
+    --font-title: 'Lexend Giga', sans-serif;
+    --font-body: 'Lexend', sans-serif;
+    --font-code: 'Fira Code', monospace;
+  }
+
+  #root {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 12pt;
   }
 }
 
@@ -15,9 +38,24 @@
 }
 
 @layer components {
-
+  
 }
 
 @layer utilities {
 
+}
+
+@layer media {
+
+}
+
+@theme {
+  --color-background: var(--color-background);
+  --color-darkest: var(--color-darkest);
+  --color-darker: var(--color-darker);
+  --color-dark: var(--color-dark);
+  --color-light: var(--color-light);
+  --color-lighter: var(--color-lighter);
+  --color-lightest: var(--color-lightest);
+  --color-foreground: var(--color-foreground);
 }
