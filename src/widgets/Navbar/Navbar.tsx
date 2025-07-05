@@ -1,5 +1,4 @@
-import { FaUserCircle } from 'react-icons/fa';
-import { FaCaretDown } from "react-icons/fa";
+import UserMenu from '@/features/auth/ui/UserMenu';
 
 export default function Navbar() {
   return (
@@ -8,15 +7,7 @@ export default function Navbar() {
         <img src="/brandmark.svg" alt="Brandmark" className="h-7 w-auto" />
         <img src="/logotype.svg" alt="Logotype" className="h-3 w-auto" />
       </header>
-      <div className="flex items-center gap-4">
-        <button className="cursor-pointer flex items-center justify-center rounded-md bg-darker hover:bg-dark gap-2 py-2 px-4">
-          <FaUserCircle className="text-3xl text-lightest" />
-          <div className="flex items-center gap-1">
-            <span className="text-sm text-lightest">zrezerzezer</span>
-            <FaCaretDown className="text-md text-lightest" />
-          </div>
-        </button>
-      </div>
+      <UserMenu />
     </nav>
   );
 }
