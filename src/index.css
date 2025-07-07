@@ -38,7 +38,26 @@
 }
 
 @layer components {
-  
+  .dropdown-menu {
+    pointer-events: none;
+    scale: 0.5;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+  }
+
+  .dropdown-button:focus-within + .dropdown-menu {
+    pointer-events: auto;
+    scale: 1;
+    opacity: 100%;
+  }
+
+  .dropdown-button:focus-within > .dropdown-closed {
+    display: none !important;
+  }
+
+  .dropdown-button:focus-within > .dropdown-open {
+    display: block !important;
+  }
 }
 
 @layer utilities {
