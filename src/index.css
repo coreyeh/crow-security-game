@@ -39,14 +39,14 @@
 
 @layer components {
   .dropdown-menu {
-    pointer-events: none;
+    visibility: hidden;
     scale: 0.5;
     opacity: 0;
     transition: all 0.1s ease-in-out;
   }
 
-  .dropdown-button:focus-within + .dropdown-menu {
-    pointer-events: auto;
+  .dropdown:focus-within > .dropdown-menu {
+    visibility: visible;
     scale: 1;
     opacity: 100%;
   }

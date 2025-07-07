@@ -1,17 +1,24 @@
-import Navbar from "./widgets/Navbar"
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-/**
- * Landing page to hook users into the game. 
- * Not to be confused with the home page which shows user profile, leaderboard, etc.
- * 
- * Navigates to the home page or login page if not authenticated.
- */
-function App() {
+import Home from './pages/Home';
+import Account from './pages/Account';
+import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Game from './pages/Game';
+import Error from './pages/Error';
+
+export default function App() {
   return (
-    <div className="w-screen h-screen">
-      <Navbar />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/settings' element={<Settings />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/game' element={<Game />} />
+        <Route path='*' element={<Error />} />
+      </Routes>
+    </Router>
+  );
 }
-
-export default App
