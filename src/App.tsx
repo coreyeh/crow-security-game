@@ -5,7 +5,7 @@ import Account from './pages/Account';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Game from './pages/Game';
-import Error from './pages/Error';
+import Error from './pages/NotFound';
 
 export default function App() {
   return (

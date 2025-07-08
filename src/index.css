@@ -77,4 +77,8 @@
   --color-lighter: var(--color-lighter);
   --color-lightest: var(--color-lightest);
   --color-foreground: var(--color-foreground);
+
+  --font-title: var(--font-title);
+  --font-body: var(--font-body);
+  --font-code: var(--font-code);
 }
