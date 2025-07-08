@@ -7,9 +7,12 @@ import { functions } from './functions';
 /**
  * @see https://docs.amplify.aws/react/build-a-backend/ to add storage, functions, and more
  */
-defineBackend({
+const backend = defineBackend({
   auth,
   data,
   storage,
   ...functions,
 });
+
+const { cfnUserPool } = backend.auth.resources.cfnResources;
+cfnUserPool.usernameAttributes = [];

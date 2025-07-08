@@ -18,7 +18,7 @@ export default function UserMenu() {
       <button className="dropdown-button cursor-pointer flex items-center justify-center gap-2 py-2 px-4 rounded-md bg-darker hover:bg-dark">
         <FaUserCircle className="text-3xl text-lightest" />
         <span className="text-sm text-lightest">
-          {isAuthenticated ? user?.username || 'User' : 'Guest'}
+          {isAuthenticated ? user?.username || 'Anonymous' : 'Guest'}
         </span>
         <FaCaretDown className="dropdown-closed text-md text-lightest" />
         <FaCaretUp className="dropdown-open hidden text-md text-lightest" />
