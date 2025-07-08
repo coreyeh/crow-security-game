@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Account from './pages/Account';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Game from './pages/Game';
 import Error from './pages/NotFound';
 
@@ -16,6 +17,7 @@ export default function App() {
         <Route path='/account' element={<Account />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/game' element={<Game />} />
         <Route path='*' element={<Error />} />
       </Routes>

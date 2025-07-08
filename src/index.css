@@ -20,6 +20,10 @@
     --color-lightest: #C9CFD2;
     --color-foreground: #F5F5F5;
 
+    --color-primary-dark: #513B8C;
+    --color-primary: #6247AA; 
+    --color-primary-light: #7D66B7;
+
     --font-title: 'Lexend Giga', sans-serif;
     --font-body: 'Lexend', sans-serif;
     --font-code: 'Fira Code', monospace;
@@ -77,8 +81,14 @@
   --color-lighter: var(--color-lighter);
   --color-lightest: var(--color-lightest);
   --color-foreground: var(--color-foreground);
+  
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
 
   --font-title: var(--font-title);
   --font-body: var(--font-body);
   --font-code: var(--font-code);
+
+  --breakpoint-xs: 480px;
 }
