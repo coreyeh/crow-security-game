@@ -1,0 +1,1 @@
+export { amplifyClient } from './amplify/amplifyClient';

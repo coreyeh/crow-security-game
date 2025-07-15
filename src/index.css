@@ -1,13 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lexend+Giga:wght@100..900&family=Lexend:wght@100..900&display=swap');
 @import "tailwindcss";
-
-@theme {
-  --font-none: '', '';
-}
 
 @layer root {
   :root {
-    --background-color: #000000;
+    --color-back:       #0D1317;    
+    --color-darkest:    #2B2C31;
+    --color-darker:     #3F434B;
+    --color-dark:       #5A636D;
+    --color-mid:        #717E8A;
+    --color-light:      #9F9F9F;
+    --color-lighter:    #C1C1C1;
+    --color-lightest:   #DCDCDC;
+    --color-fore:       #F5F5F5;  
+
+    --font-title: 'Lexend Giga', sans-serif;
+    --font-body: 'Lexend', sans-serif;
+    --font-code: 'Fira Code', monospace;
   }
+
+  #root {
+    background-color: var(--color-fore);
+    color: var(--color-back);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+}
+
+@theme {
+  --color-back: var(--color-background);
+  --color-darkest: var(--color-darkest);
+  --color-darker: var(--color-darker);
+  --color-dark: var(--color-dark);
+  --color-mid: var(--color-mid);
+  --color-light: var(--color-light);
+  --color-lighter: var(--color-lighter);
+  --color-lightest: var(--color-lightest);
+  --color-fore: var(--color-foreground);
+
+  --color-danger: var(--color-rose-400);
+  --color-warn: var(--color-amber-400);
+  --color-safe: var(--color-emerald-400);
+  
+  --font-title: var(--font-title);
+  --font-body: var(--font-body);
+  --font-code: var(--font-code);
 }
 
 @layer base {
@@ -20,4 +56,13 @@
 
 @layer utilities {
 
+}
+
+@layer media {
+  @media (prefers-color-scheme: dark) {
+    #root {
+      background-color: var(--color-back);
+      color: var(--color-fore); 
+    }
+  }
 }

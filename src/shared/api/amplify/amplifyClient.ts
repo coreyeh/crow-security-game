@@ -9,4 +9,4 @@ import { generateClient } from 'aws-amplify/data';
  * Instead, use this exported `client` instance to ensure consistent configuration
  * and avoid duplication of client logic across the codebase.
  */
-export const client = generateClient<Schema>();
+export const amplifyClient = generateClient<Schema>();
