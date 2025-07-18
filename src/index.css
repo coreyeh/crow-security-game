@@ -3,20 +3,22 @@
 
 @layer root {
   :root {
-    --color-back:     #0D1317;    
-    --color-darkest:  #2B2C31;
-    --color-darker:   #3F434B;
-    --color-dark:     #5A636D;
+    --color-fore:     #0D1317;    
+    --color-lightest: #2B2C31;
+    --color-lighter:  #3F434B;
+    --color-light:    #5A636D;
     --color-mid:      #717E8A;
-    --color-light:    #9F9F9F;
-    --color-lighter:  #C1C1C1;
-    --color-lightest: #DCDCDC;
-    --color-fore:     #F5F5F5;  
+    --color-dark:     #9F9F9F;
+    --color-darker:   #C1C1C1;
+    --color-darkest:  #DCDCDC;
+    --color-back:     #F5F5F5;  
 
-    --color-danger:   var(--color-rose-300);
-    --color-warn:     var(--color-amber-200);
-    --color-safe:     var(--color-emerald-300);
-    --color-info:     var(--color-blue-300);
+    --color-danger:   var(--color-rose-600);
+    --color-warn:     var(--color-amber-600);
+    --color-safe:     var(--color-emerald-600);
+    --color-info:     var(--color-blue-600);
+
+    --color-autofill: var(--color-yellow-100);
 
     --font-title:     'Lexend Giga', sans-serif;
     --font-header:    'League Spartan', sans-serif;
@@ -64,7 +66,7 @@
   }
 
   input:-webkit-autofill + button {
-    color: var(--color-on-autofill);
+    color: var(--color-black);
   }
 }
 
@@ -79,20 +81,20 @@
 @layer media {
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-fore:     #0D1317;    
-      --color-lightest: #2B2C31;
-      --color-lighter:  #3F434B;
-      --color-light:    #5A636D;
+      --color-back:     #0D1317;    
+      --color-darkest:  #2B2C31;
+      --color-darker:   #3F434B;
+      --color-dark:     #5A636D;
       --color-mid:      #717E8A;
-      --color-dark:     #9F9F9F;
-      --color-darker:   #C1C1C1;
-      --color-darkest:  #DCDCDC;
-      --color-back:     #F5F5F5;  
+      --color-light:    #9F9F9F;
+      --color-lighter:  #C1C1C1;
+      --color-lightest: #DCDCDC;
+      --color-fore:     #F5F5F5;  
 
-      --color-danger:   var(--color-rose-600);
-      --color-warn:     var(--color-amber-600);
-      --color-safe:     var(--color-emerald-600);
-      --color-info:     var(--color-blue-600);
+      --color-danger:   var(--color-rose-300);
+      --color-warn:     var(--color-amber-200);
+      --color-safe:     var(--color-emerald-300);
+      --color-info:     var(--color-blue-300);
     }
 
     #root {
