@@ -10,20 +10,46 @@ import {
   AuthLink,
   OAuthMenu,
   PasswordField,
- } from "@/features/auth/parts";
+} from "@/features/auth/parts";
 
+import { toaster } from "@/widgets/toast/consts";
+import { GenericToaster } from "@/widgets/toast/parts";
+ 
 import type { LoginSchema } from "@/features/auth/types";
-import { loginSchema } from "@/features/auth/consts";
+import { handleSignIn, loginSchema } from "@/features/auth/consts";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<LoginSchema>(
     { resolver: zodResolver(loginSchema) }
   );
 
   const onSubmit = async (data: LoginSchema) => {
-    console.table(data);
+    handleSignIn(data)
+      .then(result => {
+        const nextStep = result.nextStep.signInStep;
+        switch (nextStep) {
+          case "CONFIRM_SIGN_IN_WITH_EMAIL_CODE":
+            navigate('/verify-email');
+            break;
+          case "DONE":
+            navigate('/');
+            break;
+          default:
+            throw new Error("Client out of sync with server");
+        }
+      })
+      .catch(error => {
+        toaster.error({
+          title: 'Sign In',
+          description: error instanceof Error ? error.message : error ?? 'Something went wrong',
+        });
+      });
   }
 
   return (
@@ -55,6 +81,7 @@ export const LoginForm = () => {
         label="Don't have an account?" 
         call="Sign up" 
       /> 
+      <GenericToaster />
     </FormWrapper>
   );
 }

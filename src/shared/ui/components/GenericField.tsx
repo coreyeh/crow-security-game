@@ -7,9 +7,9 @@ export const GenericField = ({ label, error, ...props }: GenericFieldProps) => {
       {label && <Field.Label className="form:label">{label}</Field.Label>}
       <Field.Input 
         {...props}
-        className={`form:input ${error && 'outline-danger'}`}
+        className={`form:input ${error && 'outline-error'}`}
       />
-      {error && <span className="text-sm text-danger">{error}</span>}
+      {error && <span className="text-sm text-error">{error}</span>}
     </Field.Root>
   );
 }

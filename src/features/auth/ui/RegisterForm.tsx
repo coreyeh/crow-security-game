@@ -10,20 +10,50 @@ import {
   AuthLink,
   OAuthMenu,
   PasswordField,
- } from "@/features/auth/parts";
+} from "@/features/auth/parts";
+
+import { toaster } from "@/widgets/toast/consts";
+import { GenericToaster } from "@/widgets/toast/parts";
 
 import type { RegisterSchema } from "@/features/auth/types";
-import { registerSchema } from "@/features/auth/consts";
+import { handleSignUp, registerSchema } from "@/features/auth/consts";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<RegisterSchema>(
     { resolver: zodResolver(registerSchema) }
   );
 
   const onSubmit = async (data: RegisterSchema) => {
-    console.table(data);
+    handleSignUp(data)
+      .then(result => {
+        const nextStep = result.nextStep.signUpStep;
+        switch (nextStep) {
+          case "COMPLETE_AUTO_SIGN_IN":
+            navigate('/');
+            break;
+          case "CONFIRM_SIGN_UP":
+            navigate('/verify-email');
+            break;
+          case "DONE":
+            navigate('/login');
+            break;
+          default:
+            throw new Error("Client and server out of sync");
+        }
+      })
+      .catch(error => {
+        toaster.error({
+          title: 'Sign Up',
+          description: error instanceof Error ? error.message : error ?? 'Something went wrong',
+          type: 'error',
+        });
+      });
   }
 
   return (
@@ -61,6 +91,7 @@ export const RegisterForm = () => {
         label="Already have an account?" 
         call="Sign in" 
       /> 
+      <GenericToaster />
     </FormWrapper>
   );
 }

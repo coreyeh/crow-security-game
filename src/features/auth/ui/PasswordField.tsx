@@ -19,7 +19,7 @@ export const PasswordField = ({ label, error, forgot=false, ...props }: Password
         <PasswordInput.Input  
           {...props}
           placeholder="••••••••"
-          className={`form:input pr-12 ${error && 'outline-danger'}`}
+          className={`form:input pr-12 ${error && 'outline-error'}`}
         />
         <PasswordInput.VisibilityTrigger tabIndex={0} className="absolute right-0 mr-4 cursor-pointer">
           <PasswordInput.Indicator fallback={<FaEyeSlash />}>
@@ -27,7 +27,7 @@ export const PasswordField = ({ label, error, forgot=false, ...props }: Password
           </PasswordInput.Indicator>
         </PasswordInput.VisibilityTrigger>
       </PasswordInput.Control>
-      {error && <span className="text-sm text-danger">{error}</span>}
+      {error && <span className="text-sm text-error">{error}</span>}
     </PasswordInput.Root>
   );
 }
