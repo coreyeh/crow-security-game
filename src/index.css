@@ -71,7 +71,56 @@
 }
 
 @layer components {
+  .form\:authform {
+    @apply
+      space-y-6
+  }
 
+  .form\:field {
+    @apply
+      flex flex-col 
+      gap-2 w-full
+  }
+  
+  .form\:label {
+    @apply
+      font-medium 
+      text-sm text-lightest 
+      capitalize
+  }
+
+  .form\:input {
+    @apply
+      w-full p-2 
+      text-light 
+      rounded-md 
+      outline outline-darker 
+      focus:outline-2 focus:outline-light
+  }
+  
+  .form\:submit {
+    @apply 
+      w-full p-2 mt-2 
+      cursor-pointer 
+      capitalize text-back
+      bg-fore 
+      rounded-sm 
+      transition-colors duration-100
+      hover:bg-lightest 
+      disabled:bg-darker disabled:text-dark disabled:cursor-auto 
+  }
+
+  .form\:oauth {
+    @apply 
+      flex items-center justify-center 
+      gap-2 w-full p-2 
+      cursor-pointer 
+      rounded-sm 
+      border border-lighter 
+      transition-colors duration-100
+      hover:bg-darker 
+      focus:outline-2 focus:outline-lightest 
+  }
 }
 
 @layer utilities {
