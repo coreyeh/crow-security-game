@@ -11,8 +11,13 @@ export const auth = defineAuth({
       google: {
         clientId: secret('GOOGLE_CLIENT_ID'),
         clientSecret: secret('GOOGLE_CLIENT_SECRET'),
+        attributeMapping: {
+          email: 'email',
+          preferredUsername: 'sub'
+        },
+        scopes: ['email', 'profile'],
       },
-      callbackUrls: ['https://localhost:5173/account'],
+      callbackUrls: ['http://localhost:5173/'],
       logoutUrls: ['http://localhost:5173/',]
     },
   },

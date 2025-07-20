@@ -6,7 +6,7 @@ type AuthProviderInterface = {
   id: string;
   icon: JSX.Element;
   label: string;
-  onClick: () => Promise<void>
+  onClick: () => void
 };
 
 export const authProviders: AuthProviderInterface[] = [
@@ -14,6 +14,6 @@ export const authProviders: AuthProviderInterface[] = [
     id: "Google",
     icon: <FaGoogle aria-label="Google" className="text-lg text-lightest" />,
     label: "Continue with Google",
-    onClick: () => handleOAuthSignIn( "Google"),
+    onClick: async () => handleOAuthSignIn("Google"),
   },
 ];

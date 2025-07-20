@@ -75,5 +75,5 @@ export const handleVerifyEmail = async (data: VerifySchema): Promise<ConfirmSign
 }
 
 export const handleOAuthSignIn = async (provider: AuthProvider) => {
-  signInWithRedirect({ provider });
+  signInWithRedirect({ provider: provider });
 }
