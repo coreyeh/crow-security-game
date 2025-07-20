@@ -79,7 +79,7 @@ export const LoginForm = () => {
         />
       </form>
       <FormDivider label="or" />
-      <OAuthMenu providers={['google', 'github']} />
+      <OAuthMenu />
       <AuthLink 
         to="/register" 
         label="Don't have an account?" 

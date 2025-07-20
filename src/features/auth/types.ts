@@ -7,7 +7,7 @@ import type {
   verifySchema 
 } from './model/auth-schemas';
 
-export type Provider = "google" | "github";
+export type AuthProvider = 'Google'
 
 export type RegisterSchema = z.infer<typeof registerSchema>;
 export type LoginSchema = z.infer<typeof loginSchema>;

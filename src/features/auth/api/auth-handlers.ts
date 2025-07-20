@@ -9,6 +9,8 @@ import {
   confirmSignUp,
   type ResendSignUpCodeOutput,
   resendSignUpCode,
+  signInWithRedirect,
+  type ConfirmSignUpOutput,
 } from "aws-amplify/auth";
 
 import type { 
@@ -17,6 +19,7 @@ import type {
   RecoverRequestSchema, 
   RecoverSubmitSchema,
   VerifySchema,
+  AuthProvider,
 } from "@/features/auth/types";
 
 export const handleSignUp = async (data: RegisterSchema): Promise<SignUpOutput> => {
@@ -63,10 +66,14 @@ export const handleRecoverSubmit = async (data: RecoverRequestSchema & RecoverSu
   })
 }
 
-export const handleVerifyEmail = async (data: VerifySchema) => {
-  const result = await confirmSignUp({
+export const handleVerifyEmail = async (data: VerifySchema): Promise<ConfirmSignUpOutput> => {
+  const result = confirmSignUp({
     username: data.email,
     confirmationCode: data.code
   });
   return result;
+}
+
+export const handleOAuthSignIn = async (provider: AuthProvider) => {
+  signInWithRedirect({ provider });
 }

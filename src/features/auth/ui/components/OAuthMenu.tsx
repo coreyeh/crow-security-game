@@ -1,26 +1,19 @@
-import { oAuthProviders } from "@/features/auth/consts";
-import type { Provider } from "@/features/auth/types";
+import { authProviders } from "@/features/auth/consts";
 
-type Providers = {
-  providers: Provider[]
-};
-
-export const OAuthMenu = ({ providers }: Providers) => {
+export const OAuthMenu = () => {
   return (
     <menu className="space-y-4">
-      {providers.map((provider) => {
-        const { label, icon } = oAuthProviders[provider];
-        return (
-          <button 
-            key={provider} 
-            type="submit" 
-            className="form:oauth"
-          >
-            {icon}
-            {label}
-          </button>
-        );
-      })}
+      {authProviders.map((provider) => (
+        <button 
+          key={provider.id} 
+          type="submit" 
+          onClick={provider.onClick}
+          className="form:oauth"
+        >
+          {provider.icon}
+          {provider.label}
+        </button>
+      ))}
     </menu>
   );
 }

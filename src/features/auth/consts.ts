@@ -1,4 +1,3 @@
-export { oAuthProviders } from './lib/auth-providers';
 export { schemaAttributes } from './lib/schema-attributes';
 
 export { 
@@ -8,6 +7,7 @@ export {
   recoverRequestSchema,
   recoverSubmitSchema,
 } from './model/auth-schemas';
+export { authProviders } from './model/auth-providers';
 
 export { 
   handleSignUp, 

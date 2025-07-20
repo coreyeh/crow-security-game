@@ -78,7 +78,7 @@ export const RegisterForm = () => {
         />
       </form>
       <FormDivider label="or" />
-      <OAuthMenu providers={['google', 'github']} />
+      <OAuthMenu />
       <AuthLink 
         to="/login" 
         label="Already have an account?" 
