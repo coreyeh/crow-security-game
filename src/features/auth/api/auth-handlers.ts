@@ -1,5 +1,23 @@
-import { signUp, signIn, type SignUpOutput, type SignInOutput } from "aws-amplify/auth";
-import type { RegisterSchema, LoginSchema } from "@/features/auth/types";
+import { 
+  signUp, 
+  type SignUpOutput, 
+  signIn, 
+  type SignInOutput, 
+  resetPassword, 
+  type ResetPasswordOutput,
+  confirmResetPassword,
+  confirmSignUp,
+  type ResendSignUpCodeOutput,
+  resendSignUpCode,
+} from "aws-amplify/auth";
+
+import type { 
+  RegisterSchema, 
+  LoginSchema, 
+  RecoverRequestSchema, 
+  RecoverSubmitSchema,
+  VerifySchema,
+} from "@/features/auth/types";
 
 export const handleSignUp = async (data: RegisterSchema): Promise<SignUpOutput> => {
   const result = signUp({
@@ -15,10 +33,40 @@ export const handleSignUp = async (data: RegisterSchema): Promise<SignUpOutput> 
   return result;
 }
 
+export const handleResendSignUp = async (email: string): Promise<ResendSignUpCodeOutput> => {
+  const result = resendSignUpCode({
+    username: email,
+  });
+  return result;
+}
+
 export const handleSignIn = async (data: LoginSchema): Promise<SignInOutput> => {
   const result = signIn({
     username: data.email,
     password: data.password,
   })
+  return result;
+}
+
+export const handleRecoverRequest = async (data: RecoverRequestSchema): Promise<ResetPasswordOutput> => {
+  const result = resetPassword({
+    username: data.email,
+  });
+  return result;
+}
+
+export const handleRecoverSubmit = async (data: RecoverRequestSchema & RecoverSubmitSchema) => {
+  confirmResetPassword({
+    username: data.email,
+    confirmationCode: data.code,
+    newPassword: data.password,
+  })
+}
+
+export const handleVerifyEmail = async (data: VerifySchema) => {
+  const result = await confirmSignUp({
+    username: data.email,
+    confirmationCode: data.code
+  });
   return result;
 }

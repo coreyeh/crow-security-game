@@ -1,6 +1,8 @@
 import type { FieldInputProps } from "@ark-ui/react";
 
-export type GenericFieldProps = {
+export type GenericFieldProps = React.PropsWithChildren<{
   label?: string;
   error?: string;
-} & FieldInputProps
+  hidden?: boolean;
+  children?: React.ReactNode;
+}> & FieldInputProps

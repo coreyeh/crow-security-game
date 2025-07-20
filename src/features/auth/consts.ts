@@ -3,7 +3,17 @@ export { schemaAttributes } from './lib/schema-attributes';
 
 export { 
   registerSchema,
-  loginSchema
+  loginSchema,
+  verifySchema,
+  recoverRequestSchema,
+  recoverSubmitSchema,
 } from './model/auth-schemas';
 
-export { handleSignUp, handleSignIn } from './api/auth-handlers';
+export { 
+  handleSignUp, 
+  handleSignIn, 
+  handleResendSignUp,
+  handleRecoverRequest,
+  handleRecoverSubmit,
+  handleVerifyEmail,
+} from './api/auth-handlers';

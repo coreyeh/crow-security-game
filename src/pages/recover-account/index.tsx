@@ -1,0 +1,1 @@
+export { RecoverAccount } from './ui/page';

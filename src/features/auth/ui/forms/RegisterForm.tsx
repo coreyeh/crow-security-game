@@ -8,12 +8,12 @@ import {
 
 import { 
   AuthLink,
+  EmailField,
   OAuthMenu,
   PasswordField,
 } from "@/features/auth/parts";
 
 import { toaster } from "@/widgets/toast/consts";
-import { GenericToaster } from "@/widgets/toast/parts";
 
 import type { RegisterSchema } from "@/features/auth/types";
 import { handleSignUp, registerSchema } from "@/features/auth/consts";
@@ -34,14 +34,9 @@ export const RegisterForm = () => {
       .then(result => {
         const nextStep = result.nextStep.signUpStep;
         switch (nextStep) {
-          case "COMPLETE_AUTO_SIGN_IN":
-            navigate('/');
-            break;
           case "CONFIRM_SIGN_UP":
-            navigate('/verify-email');
-            break;
-          case "DONE":
-            navigate('/login');
+            localStorage.setItem('auth:pending_email', data.email)
+            navigate('/verify-email', { state: { email: data.email } });
             break;
           default:
             throw new Error("Client and server out of sync");
@@ -67,11 +62,9 @@ export const RegisterForm = () => {
           placeholder="JohnPork" 
           {...register("username")}
         />
-        <GenericField 
-          label="email" 
+        <EmailField 
+          label="email"
           error={errors.email?.message}
-          type="text" 
-          placeholder="johnpork@gmail.com" 
           {...register("email")}
         />
         <PasswordField 
@@ -91,7 +84,6 @@ export const RegisterForm = () => {
         label="Already have an account?" 
         call="Sign in" 
       /> 
-      <GenericToaster />
     </FormWrapper>
   );
 }

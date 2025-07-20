@@ -2,25 +2,24 @@ import {
   FormDivider,
   FormHeader, 
   FormWrapper, 
-  GenericField,
   SubmitField,  
 } from "@/shared/ui/parts";
 
 import { 
   AuthLink,
+  EmailField,
   OAuthMenu,
   PasswordField,
 } from "@/features/auth/parts";
 
 import { toaster } from "@/widgets/toast/consts";
-import { GenericToaster } from "@/widgets/toast/parts";
  
 import type { LoginSchema } from "@/features/auth/types";
 import { handleSignIn, loginSchema } from "@/features/auth/consts";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -34,14 +33,15 @@ export const LoginForm = () => {
       .then(result => {
         const nextStep = result.nextStep.signInStep;
         switch (nextStep) {
-          case "CONFIRM_SIGN_IN_WITH_EMAIL_CODE":
-            navigate('/verify-email');
+          case "CONFIRM_SIGN_UP":
+            localStorage.setItem('auth:pending_email', data.email);
+            navigate('/verify-email', { state: { email: data.email } });
             break;
           case "DONE":
             navigate('/');
             break;
           default:
-            throw new Error("Client out of sync with server");
+            throw new Error("Client and server out of sync");
         }
       })
       .catch(error => {
@@ -56,19 +56,23 @@ export const LoginForm = () => {
     <FormWrapper>
       <FormHeader title="Sign in to Grey Layer" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <GenericField 
-          label="email" 
+        <EmailField 
+          label="email"
           error={errors.email?.message}
-          type="text" 
-          placeholder="johnpork@gmail.com" 
           {...register("email")}
         />
         <PasswordField 
           label="password"
-          error={errors.password?.message}
-          forgot 
+          error={errors.password?.message} 
           {...register("password")}
-        />
+        >
+          <Link 
+            to="/recover-account" 
+            className="text-sm text-light hover:underline"
+          >
+            Forgot your password?
+          </Link>
+        </PasswordField>
         <SubmitField 
           label="Login"
           isSubmitting={isSubmitting}
@@ -81,7 +85,6 @@ export const LoginForm = () => {
         label="Don't have an account?" 
         call="Sign up" 
       /> 
-      <GenericToaster />
     </FormWrapper>
   );
 }
